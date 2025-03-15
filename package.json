@@ -1,0 +1,14 @@
+{
+  "name": "ts-circuits",
+  "version": "0.0.0",
+  "description": "Playing around with digital circuits in Typescripts type system",
+  "author": "Johannes Kohlmann",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "tsc --project tsconfig.test.json"
+  },
+  "dependencies": {
+    "typescript": "^5.8.2"
+  }
+}
