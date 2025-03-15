@@ -25,5 +25,5 @@ export type At<A extends Bit[], B extends number, Count extends any[] = []> = A 
     Tail extends Bit[] ? 
         Count["length"] extends B ? Head : At<Tail, B, [...Count, any]>
     : never
-    : `Error:Index ${B} is out of bounds for array of length ${Count["length"]}`;
+    : `Error: Index ${B} is out of bounds for array of length ${Count["length"]}`;
 

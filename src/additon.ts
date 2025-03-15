@@ -24,7 +24,6 @@ export type RippleCarryAdder<A, B, C = "0", Count extends any[] = [], Out extend
           RippleCarryAdder<A, B, NewCarry, [...Count, any], [...Out, Sum]>
         : "Sum returned by FullAdder is not a bit."
       : "Output returned by FullAdder is not an array of shape [Sum, Carry]."
-  : `Inputs need to have the same length. Found ${A["length"]} and ${B["length"]}.`
+  : `Inputs need to have the same length. Found length ${A["length"]} and ${B["length"]}.`
   : 'B needs to be an array of bits.'
   : 'A needs to be an array of bits.'
-

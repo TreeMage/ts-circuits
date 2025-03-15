@@ -15,8 +15,8 @@ const FullAdderTest7: FullAdder<"1", "1", "0"> = ["1", "0"]
 const FullAdderTest8: FullAdder<"1", "1", "1"> = ["1", "1"]
 
 
-const RippleCarryAdderTest1: RippleCarryAdder<["1"], ["0", "1"]> = "Inputs need to have the same length. Found 1 and 2."
-const RippleCarryAdderTest2: RippleCarryAdder<["0", "1"], ["1"]> = "Inputs need to have the same length. Found 2 and 1."
+const RippleCarryAdderTest1: RippleCarryAdder<["1"], ["0", "1"]> = "Inputs need to have the same length. Found length 1 and 2."
+const RippleCarryAdderTest2: RippleCarryAdder<["0", "1"], ["1"]> = "Inputs need to have the same length. Found length 2 and 1."
 const RippleCarryAdderTest3: RippleCarryAdder<number[], ["0", "1"]> = "A needs to be an array of bits."
 const RippleCarryAdderTest4: RippleCarryAdder<["0", "1"], number[]> = "B needs to be an array of bits."
 
