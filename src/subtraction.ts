@@ -1,4 +1,5 @@
-import type { Bit, And, Not, Xor, Or, At } from "./binary.ts"
+import type { Bit, And, Not, Xor, Or } from "./binary.ts"
+import type { At } from "./helper.js";
 
 // HalfSubtractor<A, B> = [(NOT A) AND B, A XOR B] = [Borrow, Difference]
 export type HalfSubtractor<A, B> = [And<Not<A>, B>, Xor<A, B>];
