@@ -1,7 +1,7 @@
 export type Bit = "0" | "1";
 
-type IsBinaryNumber<A> = A extends `${Bit}${infer Tail}` ? IsBinaryNumber<Tail> : A extends "" ? true : false;
-type HaveSameLength<A, B> = 
+export type IsBinaryNumber<A> = A extends `${Bit}${infer Tail}` ? IsBinaryNumber<Tail> : A extends "" ? true : false;
+export type HaveSameLength<A, B> = 
   A extends "" ?
     B extends "" ?
         true
