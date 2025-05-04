@@ -1,5 +1,4 @@
 import type { Bit, Or, And, Xor, IsBinaryNumber, LogicalAnd, HaveSameLength } from "./binary.ts"
-import type { At } from "./helper.js";
 
 // HalfAdder<A,B> = [AB, A XOR B] = [Carry, Sum]
 export type HalfAdder<A, B> = [And<A,B>, Xor<A,B>];

@@ -1,5 +1,4 @@
-import type { Bit, And, Not, Xor, Or } from "./binary.ts"
-import type { At } from "./helper.js";
+import type { Bit, And, Not, Xor, Or, LogicalAnd, IsBinaryNumber, HaveSameLength } from "./binary.ts"
 
 // HalfSubtractor<A, B> = [(NOT A) AND B, A XOR B] = [Borrow, Difference]
 export type HalfSubtractor<A, B> = [And<Not<A>, B>, Xor<A, B>];
@@ -12,18 +11,14 @@ export type FullSubtractor<A, B, C = "0"> =
   : never
   : never
 
-export type RippleCarrySubtractor<A, B, C = "0", Count extends any[] = [], Out extends Bit[] = []> =
-  A extends Bit[] ? 
-  B extends Bit[] ? 
-  A["length"] extends B["length"] ? 
-    Count["length"] extends A["length"] ? 
-      [...Out, C] :
-      FullSubtractor<At<A, Count["length"]>, At<B, Count["length"]>, C> extends [infer NewBorrow, infer NewDifference] ? 
-        NewDifference extends Bit ? 
-          RippleCarrySubtractor<A, B, NewBorrow, [...Count, any], [...Out, NewDifference]>
-        : "Difference returned by FullSubtractor is not a bit."
-      : "Difference returned by FullSubtractor is not an array of shape [Difference, Borrow]."
-    : `Inputs need to have the same length. Found ${A["length"]} and ${B["length"]}`
-  : `B needs to be an array of bits.`
-  : `A needs to be an array of bits.`
+export type RippleCarrySubtractor<A, B, C = "0"> =
+  LogicalAnd<LogicalAnd<IsBinaryNumber<A>, IsBinaryNumber<B>>, HaveSameLength<A, B>> extends true ?
+    A extends `${infer HeadA extends Bit}${infer TailA}` ?
+      B extends `${infer HeadB extends Bit}${infer TailB}` ?
+        FullSubtractor<HeadA, HeadB, C> extends [infer newBorrow, infer Difference extends Bit] ?
+          `${Difference}${RippleCarrySubtractor<TailA, TailB, newBorrow>}` : 
+          "Difference returned by FullSubtractor."  
+      : ""
+    : ""
+  : "Inputs need to be binary numbers and have the same length."
 
